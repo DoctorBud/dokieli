@@ -1,0 +1,67 @@
+.easymde-preview .smartdown-outer-container {
+	width: 100%;
+}
+
+.markdown-content {
+  display: none;
+}
+
+.easymde-div {
+}
+
+.easymde-preview {
+}
+
+.editor-toolbar {
+  padding: 0 5px;
+}
+
+.editor-toolbar:before {
+  margin-bottom: 0;
+}
+
+.editor-toolbar:after {
+  margin-top: 0;
+}
+
+.cm-s-easymde.CodeMirror-wrap {
+  /*max-height: 80vh;*/
+  /*overflow-y: scroll;*/
+}
+
+.CodeMirror.CodeMirror-wrap {
+  border: none;
+}
+
+.CodeMirror-scroll {
+  border: 1px solid lightgray;
+  margin: -10px;
+}
+
+.editor-preview-full {
+	/* height: auto; */
+  padding: 0;
+}
+
+.editor-toolbar.disabled-for-preview {
+	/*display: none;*/
+}
+
+.editor-preview-full {
+	background: inherit;
+  padding-right: 10px;
+  padding-left: 2px;
+}
+
+.smartdown-outer-container,
+.smartdown-outer-container.smartdown-theme-blog {
+  background: inherit;
+}
+
+.smartdown-outer-container.smartdown-theme-blog .smartdown-container {
+  background: inherit;
+}
+
+.smartdown-outer-container.smartdown-theme-blog .smartdown-container p.smartdown_p {
+  padding-left: 0;
+}
