@@ -14,7 +14,9 @@ module.exports = {
   },
 
   toMarkdown: function (base) {
+    console.log('TurndownService', TurndownService, TurndownService.prototype)
     var turndownService = new TurndownService()
+    console.log('turndownService', turndownService)
     var markdownText = turndownService.turndown(base.selection)
 
     DO.U.MarkdownEditor.markdownIdCounter++;
@@ -381,10 +383,5 @@ class="smartdown-container">
       const latest = easyMDEInstance.value();
       sourceElement.textContent = latest;
     });
-
-    window.easyMDEInstance = easyMDEInstance;
-    // console.log('easyMDEInstance', textareaId);
-    // console.log(easyMDEInstance);
-    // console.log(textareaDivSource);
   },
 };
