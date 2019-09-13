@@ -1,7 +1,7 @@
 /* global DO */
 
 var EasyMDE = require('easymde')
-var TurndownService = require('turndown')
+var TurndownService = require('turndown').default
 
 module.exports = {
   EasyMDE: EasyMDE,
@@ -15,7 +15,7 @@ module.exports = {
 
   toMarkdown: function (base) {
     var turndownService = new TurndownService()
-    var markdownText = turndownService.turndown(base.selection);
+    var markdownText = turndownService.turndown(base.selection)
 
     DO.U.MarkdownEditor.markdownIdCounter++;
     var preId = `easymde-solid-pre-${DO.U.MarkdownEditor.markdownIdCounter}`;
