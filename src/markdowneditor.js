@@ -14,9 +14,7 @@ module.exports = {
   },
 
   toMarkdown: function (base) {
-    console.log('TurndownService', TurndownService, TurndownService.prototype)
     var turndownService = new TurndownService()
-    console.log('turndownService', turndownService)
     var markdownText = turndownService.turndown(base.selection)
 
     DO.U.MarkdownEditor.markdownIdCounter++;
@@ -384,6 +382,6 @@ class="smartdown-container">
       sourceElement.textContent = latest;
     });
 
-    window.markdowneditorVersion = '0.0.1';
+    window.markdowneditorVersion = '0.0.2';
   },
 };
