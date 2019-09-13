@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dokieli with markdown</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <!-- <link href="https://dokie.li/media/css/basic.css" media="all" rel="stylesheet" title="Basic" /> -->
+    <!-- <link href="https://dokie.li/media/css/dokieli.css" media="all" rel="stylesheet" /> -->
+
+    <link href="https://cdn.jsdelivr.net/gh/DoctorBud/dokieli@markdown-smartdown-support-4/media/css/basic.css" media="all" rel="stylesheet" title="Basic" />
+    <link href="https://cdn.jsdelivr.net/gh/DoctorBud/dokieli@markdown-smartdown-support-4/media/css/dokieli.css" media="all" rel="stylesheet" />
+
+    <link href="https://unpkg.com/easymde/dist/easymde.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/DoctorBud/dokieli@markdown-smartdown-support-4/media/css/easymde.css" rel="stylesheet" />
+    <!-- <link href="/media/css/easymde.css" rel="stylesheet" /> -->
+
+    <script src="https://cdn.jsdelivr.net/gh/DoctorBud/dokieli@markdown-smartdown-support-4/scripts/dokieli.js"></script>
+    <!-- <script src="/scripts/dokieli.js"></script> -->
+
+  </head>
+
+  <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ pimspace: http://www.w3.org/ns/pim/space# cc: https://creativecommons.org/ns# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ void: http://rdfs.org/ns/void# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# bibo: http://purl.org/ontology/bibo/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# dio: https://w3id.org/dio# rel: https://www.w3.org/ns/iana/link-relations/relation#" typeof="schema:CreativeWork prov:Entity">
+    <main>
+      <article about="" typeof="schema:Article doap:Project">
+        <h1 property="schema:name doap:name">dokieli with markdown</h1>
+
+        <div id="content">
+          <p id="introduction" property="schema:description doap:shortdesc">dokieli is a clientside editor for decentralised article publishing, annotations and social interactions.</p>
+
+          <section id="dokieli-markdown" inlist="" rel="schema:hasPart" resource="#dokieli-markdown">
+            <h2 property="schema:name">dokieli and markdown</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>The original dokieli uses a Medium-style WYSIWYG editor to enable the user to author content. I have made some modifications to the original dokieli so that Markdown can be used to author content, and so that this content is stored as Markdown within the document.</p>
+            </div>
+          </section>
+
+          <section id="markdown-basics" inlist="" rel="schema:hasPart" resource="#markdown-basics">
+            <pre class="markdown-content">
+#### Motivation
+
+My motivation is that I prefer to edit Markdown, and others may also have this preference. Primarily, though, I want to be able to use [Smartdown](https://smartdown.io) within Solid and dokieli provides working code that supports:
+- *self-replication* of the dokieli editor application
+- Storing and retrieving documents to and from Solid PODs.
+
+I have an existing implementation of [Smartdown-on-Solid](https://smartdown.solid.community/public/smartdown/#/public/Home.markdown) that relies upon storing `.markdown` files in a POD and then uses a Smartdown viewer application to render these files.
+
+#### Features
+
+- Select dokieli HTML text and use the `markdown` button to replace that text with its equivalent markdown (via the `turndown` library).
+- Uses [easy-markdown-editor](https://github.com/Ionaru/easy-markdown-editor) to enable semi-WYSIWYG editing of Markdown content with live preview, via [CodeMirror](https://codemirror.net).
+
+#### Futures
+
+- Complete the implementation of the `unmarkdown` button so that it converts a markdown editor's content to dokieli HTML.
+- Add a button to the markdown editor to allow editor and its contents to be deleted from the document. Current workaround is to use `unmarkdown` to convert to HTML, and then use dokieli to delete the HTML.
+- Conform better to dokieli-style semantic HTML when rendering markdown.
+- Better isolate the optional smartdown code from the markdown editing/rendering code.
+
+#### Bugs
+
+- When using Smartdown, it is necessary to disable `MathAvailable` in `config.js`, since both Smartdown and Dokieli support MathJax, I need to figure out a way to make the two MathJax's coexist, ideally using the same library and runtime.
+- When in preview mode, the default for non-author mode, the height of the preview is tied to the height of its markdown source. This should be smarter so that a preview is exactly as high as necessary.
+- A workaround for the above problem is to add blank lines to the end of the markdown source text to increase the height of the preview (ick).
+- Probably many more bugs; these are early days.
+
+            </pre>
+          </section>
+          <section id="markdown-basics" inlist="" rel="schema:hasPart" resource="#markdown-basics">
+            <pre class="markdown-content">
+
+### Markdown Basics
+
+[Markdown](https://en.wikipedia.org/wiki/Markdown) was originally conceived as an easier way to write prose and technical material for online presentation. Smartdown embraces and extends that philosophy, best expressed by the original mind behind Markdown, [John Gruber](https://daringfireball.net/projects/markdown/syntax#philosophy):
+
+> #### Philosophy
+> Markdown is intended to be as easy-to-read and easy-to-write as is feasible.
+> Readability, however, is emphasized above all else. A Markdown-formatted document should be publishable as-is, as plain text, without looking like it's been marked up with tags or formatting instructions. While Markdown's syntax has been influenced by several existing text-to-HTML filters -- including [Setext][1], [atx][2], [Textile][3], [reStructuredText][4], [Grutatext][5], and [EtText][6] -- the single biggest source of inspiration for Markdown's syntax is the format of plain text email.
+> To this end, Markdown's syntax is comprised entirely of punctuation characters, which punctuation characters have been carefully chosen so as to look like what they mean. E.g., asterisks around a word actually look like \*emphasis\*. Markdown lists look like, well, lists. Even blockquotes look like quoted passages of text, assuming you've ever used email.
+
+
+  [1]: https://docutils.sourceforge.net/mirror/setext.html
+  [2]: https://www.aaronsw.com/2002/atx/
+  [3]: https://textism.com/tools/textile/
+  [4]: https://docutils.sourceforge.net/rst.html
+  [5]: https://www.triptico.com/software/grutatxt.html
+  [6]: https://ettext.taint.org/doc/
+            </pre>
+          </section>
+
+<pre class="markdown-content">
+
+> **The Road Not Taken**
+
+> Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;
+
+> Then took the other, as just as fair,
+And having perhaps the better claim,
+Because it was grassy and wanted wear;
+Though as for that the passing there
+Had worn them really about the same,
+
+> And both that morning equally lay
+In leaves no step had trodden black.
+Oh, I kept the first for another day!
+Yet knowing how way leads on to way,
+I doubted if I should ever come back.
+
+> I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.
+
+> **Robert Frost**
+</pre>
+
+          <section id="smartdown-raven" inlist="" rel="schema:hasPart" resource="#smartdown-raven">
+
+<pre class="markdown-content">
+The [Raven](https://en.wikipedia.org/wiki/Raven) is Smartdown's official mascot:
+
+![Picture of Raven](https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Natural_History%2C_Birds_-_Raven.jpg/570px-Natural_History%2C_Birds_-_Raven.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+          </section>
+
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <section id="help-and-shape" rel="schema:hasPart" resource="#help-and-shape">
+        <h2 property="schema:name">Help and shape dokieli</h2>
+        <div datatype="rdf:HTML" property="schema:description">
+          <p><a about="" rel="doap:repository" href="https://github.com/linkeddata/dokieli">dokieli</a> (<a about="" rel="doap:bug-database" href="https://github.com/linkeddata/dokieli/issues">issues</a>, <a href="https://gitter.im/linkeddata/dokieli">chat</a>), <a about="" rel="rdfs:seeAlso" href="https://linkedresearch.org/">Linked Research</a>, <a href="https://solid.mit.edu/">Solid</a>. Supported by <a href="http://crosscloud.org/">Crosscloud</a> (2015-10 — 2016-09).</p>
+        </div>
+      </section>
+    </footer>
+  </body>
+</html>
+

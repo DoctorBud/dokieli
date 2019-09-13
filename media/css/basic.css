@@ -853,11 +853,17 @@ font-size: 1.4em;
 
 #dokieli-features,
 #dokieli-read-write-web,
-#figure-dokieli-overview,
+#figure-dokieli-overview {
+max-width:99vw;
+margin-left: calc(-48vw + 50%);
+margin-right: calc(-48vw + 50%);
+}
+
 body > footer {
 max-width:99vw;
-margin-left: calc(-50vw + 50%);
-margin-right: calc(-50vw + 50%);
+margin-left: calc(-48vw + 50%);
+margin-right: calc(-48vw + 50%);
+padding: 0 10px;
 }
 
 #dokieli-features,

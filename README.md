@@ -176,6 +176,17 @@ requests](https://help.github.com/articles/about-pull-requests/) for the
 remaining steps on how to propose your changes to be brought into dokieli's
 repository.
 
+## Using `http-server` to test locally
+
+```bash
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 \
+	-keyout key.pem -out cert.pem
+```
+
+```bash
+((sleep 2 && open https://localhost:8989/indexmarkdown.html)&) && \
+	http-server -c-1 -S -p 8989
+```
 
 ## Contributors
 * [Amy Guy](https://github.com/rhiaro)
