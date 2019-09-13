@@ -383,5 +383,7 @@ class="smartdown-container">
       const latest = easyMDEInstance.value();
       sourceElement.textContent = latest;
     });
+
+    window.markdowneditorVersion = '0.0.1';
   },
 };
