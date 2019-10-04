@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>dokieli with markdown and smartdown</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <link class="do-replicate" href="https://doctorbud.com/dokieli/basic.css" media="all" rel="stylesheet" title="Basic" />
+    <link class="do-replicate" href="https://doctorbud.com/dokieli/dokieli.css" media="all" rel="stylesheet" />
+
+    <link class="do-replicate" href="https://unpkg.com/easymde@2.13.0/dist/easymde.min.css" rel="stylesheet" />
+    <link class="do-replicate" rel=stylesheet href="https://unpkg.com/smartdown/dist/lib/smartdown.css">
+    <link class="do-replicate" rel=stylesheet href="https://unpkg.com/smartdown/dist/lib/fonts.css">
+
+    <link class="do-replicate" href="https://doctorbud.com/dokieli/easymde.css" rel="stylesheet" />
+
+    <script class="do-replicate" src="https://doctorbud.com/dokieli/dokieli.js"></script>
+  </head>
+
+  <body about="" prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ pimspace: http://www.w3.org/ns/pim/space# cc: https://creativecommons.org/ns# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# mem: http://mementoweb.org/ns# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ void: http://rdfs.org/ns/void# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# bibo: http://purl.org/ontology/bibo/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# dio: https://w3id.org/dio# rel: https://www.w3.org/ns/iana/link-relations/relation#" typeof="schema:CreativeWork prov:Entity">
+    <main>
+      <article about="" typeof="schema:Article doap:Project">
+        <h1 property="schema:name doap:name">dokieli with markdown and smartdown</h1>
+
+        <div id="content">
+          <p id="introduction" property="schema:description doap:shortdesc">dokieli is a clientside editor for decentralised article publishing, annotations and social interactions.</p>
+
+          <section id="dokieli-markdown" inlist="" rel="schema:hasPart" resource="#dokieli-markdown">
+            <h2 property="schema:name">dokieli and markdown</h2>
+            <div datatype="rdf:HTML" property="schema:description">
+              <p>The original dokieli uses a Medium-style WYSIWYG editor to enable the user to author content. I have made some modifications to the original dokieli so that Markdown can be used to author content, and so that this content is stored as Markdown within the document.</p>
+            </div>
+          </section>
+
+          <section id="smartdown-examples" inlist="" rel="schema:hasPart" resource="#smartdown-examples">
+            <pre class="markdown-content">
+### dokieli and markdown
+
+Here is an example of Smartdown's inline playables, with a [P5JS](https://p5js.org) circle and square being drawn amidst this line of text ...
+
+```p5js/autoplay/inline
+p5.setup = function() {
+};
+
+p5.draw = function() {
+  p5.ellipse(50, 50, 80, 80);
+};
+```
+
+... with **this text** in between ...
+
+```p5js/autoplay/inline
+p5.setup = function() {
+};
+
+p5.draw = function() {
+  p5.rect(5, 5, 80, 80);
+};
+```
+
+... and being followed by this text.
+
+
+So you can see how the circle and rectangle above were rendered inline with the text.
+            </pre>
+          </section>
+
+          <section id="markdown-basics" inlist="" rel="schema:hasPart" resource="#markdown-basics">
+            <pre class="markdown-content">
+
+##### Features
+
+- [What is your name?](:?Name)
+- Nice to meet you, [](:!Name).
+- Math: $E=mc^2$
+- Math: $$E=mc^2$$
+
+            </pre>
+          </section>
+
+          <section id="smartdown-overview" inlist="" rel="schema:hasPart" resource="#smartdown-overview">
+
+            <pre class="markdown-content">
+
+# smartdown
+
+> smartdown - A Javascript library for translating, rendering, and interacting with Smartdown documents.
+
+Smartdown is a *declarative*, *literate* and *reactive* authoring technology for writing technical and non-technical documents that are compelling and easy to share and publish within many existing forums and blogging systems. Smartdown is designed for blogging, technical communication, and teaching. Smartdown simplifies the creation of *Explorable Explanations*, which are prose documents with embedded interactive content such as charts, graphs, and featherweight programs called *playables*.
+
+Smartdown extends the simple expressivity of the [Markdown](https://en.wikipedia.org/wiki/Markdown) language commonly used on blogs, messaging systems, technical forums, and on [GitHub](https://help.github.com/articles/basic-writing-and-formatting-syntax/). The Smartdown **engine** is a Javascript library that interprets the content in these Smartdown source files and enacts the desired behavior and presentation.
+
+- [Smartdown Source](https://github.com/smartdown/smartdown/)
+- [Smartdown Documentation](https://smartdown.github.io/smartdown/doc/)
+- [Smartdown API](https://smartdown.github.io/smartdown/doc/api/)
+
+
+
+
+
+            </pre>
+          </section>
+
+
+<pre class="markdown-content">
+#### How is Smartdown Different?
+
+Smartdown *is* Markdown, and any Markdown document can be viewed within a Smartdown-enabled viewer. A Smartdown-enabled viewer is able to interpret certain valid Markdown constructs in a way that enables the document to be more interactive than as a static Markdown document. Smartdown takes advantage of two features of Markdown, and extends their interpretation to enable Smartdown's interactivity. Specifically, Smartdown uses Markdown's *link* syntax to embed input, output and calculation*cells* into a document, and uses Markdown's *code block* syntax to embed more complex content as *playables*.
+
+
+
+
+</pre>
+
+
+          <pre class="markdown-content">
+
+#### P5JS Ellipse Example
+
+```p5js/playable
+p5.setup = function() {
+};
+
+p5.draw = function() {
+  p5.ellipse(50, 50, 80, 80);
+};
+```
+
+- **bold**
+- *italic*
+- ~~strikethru~~
+          </pre>
+
+
+<pre class="markdown-content">
+
+![](https://media.poetryfoundation.org/uploads/media/default/0001/08/22208df9f0df9b4e6d3e267b60d17d43f20252f3.mp3)
+
+> **The Road Not Taken**
+
+> Two roads diverged in a yellow wood,
+And sorry I could not travel both
+And be one traveler, long I stood
+And looked down one as far as I could
+To where it bent in the undergrowth;
+
+> Then took the other, as just as fair,
+And having perhaps the better claim,
+Because it was grassy and wanted wear;
+Though as for that the passing there
+Had worn them really about the same,
+
+> And both that morning equally lay
+In leaves no step had trodden black.
+Oh, I kept the first for another day!
+Yet knowing how way leads on to way,
+I doubted if I should ever come back.
+
+> I shall be telling this with a sigh
+Somewhere ages and ages hence:
+Two roads diverged in a wood, and I—
+I took the one less traveled by,
+And that has made all the difference.
+
+> **Robert Frost**
+
+</pre>
+
+
+          <section id="smartdown-raven" inlist="" rel="schema:hasPart" resource="#smartdown-raven">
+
+<pre class="markdown-content">
+The [Raven](https://en.wikipedia.org/wiki/Raven) is Smartdown's official mascot:
+
+![Picture of Raven](https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Natural_History%2C_Birds_-_Raven.jpg/570px-Natural_History%2C_Birds_-_Raven.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+          </section>
+
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <section id="help-and-shape" rel="schema:hasPart" resource="#help-and-shape">
+        <h2 property="schema:name">Help and shape dokieli</h2>
+        <div datatype="rdf:HTML" property="schema:description">
+          <p><a about="" rel="doap:repository" href="https://github.com/linkeddata/dokieli">dokieli</a> (<a about="" rel="doap:bug-database" href="https://github.com/linkeddata/dokieli/issues">issues</a>, <a href="https://gitter.im/linkeddata/dokieli">chat</a>), <a about="" rel="rdfs:seeAlso" href="https://linkedresearch.org/">Linked Research</a>, <a href="https://solid.mit.edu/">Solid</a>. Supported by <a href="http://crosscloud.org/">Crosscloud</a> (2015-10 — 2016-09).</p>
+        </div>
+      </section>
+    </footer>
+
+    <script class="do-replicate" src="https://unpkg.com/smartdown/dist/lib/smartdown.js"></script>
+    <script class="do-replicate" src="https://unpkg.com/smartdown/dist/lib/calc_handlers.js"></script>
+    <script class="do-replicate" src="https://unpkg.com/smartdown/dist/lib/starter.js"></script>
+
+    <script class="do-replicate">
+      /* eslint-disable */
+      window.smartdownResourceURL = '';
+      window.smartdownBaseURL = 'https://unpkg.com/smartdown/dist/';
+      window.smartdownResourceURL = 'https://unpkg.com/smartdown-gallery/resources/';
+
+      window.smartdownStarter(null, function() { DO.U.MarkdownEditor.enableSmartdown(); });
+    </script>
+  </body>
+</html>
+
