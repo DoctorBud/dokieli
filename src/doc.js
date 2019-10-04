@@ -51,6 +51,27 @@ function domToString (node, options = {}) {
   return dumpNode(node, options, skipAttributes, selfClosing, noEsc)
 }
 
+function shouldIncludeNode(options, node) {
+  var skippableClassNames = [];
+
+  if (typeof options.skipNodeWithClass === 'string') {
+    skippableClassNames = [options.skipNodeWithClass];
+  }
+  else if (typeof options.skipNodeWithClass === 'object') {
+    skippableClassNames = options.skipNodeWithClass;
+  }
+
+  var result = true;
+  skippableClassNames.forEach((classNameToSkip) => {
+    if (node.matches('.' + classNameToSkip)) {
+      result = false;
+    }
+  });
+
+  return result;
+}
+
+
 function dumpNode (node, options, skipAttributes, selfClosing, noEsc) {
   var out = ''
 
@@ -60,7 +81,7 @@ function dumpNode (node, options, skipAttributes, selfClosing, noEsc) {
     if (node.hasAttribute('class') && 'classWithChildText' in options &&
         node.matches(options.classWithChildText.class)) {
       out += node.querySelector(options.classWithChildText.element).textContent
-    } else if (!(options.skipNodeWithClass && node.matches('.' + options.skipNodeWithClass))) {
+    } else if (shouldIncludeNode(options, node)) {
       var ename = node.nodeName.toLowerCase()
       out += '<' + ename
 
@@ -160,6 +181,7 @@ function getDocument (cn, options) {
   let doctype = getDoctype()
   let s = (doctype.length > 0) ? doctype + '\n' : ''
   s += domToString(node, options)
+
   return s
 }
 

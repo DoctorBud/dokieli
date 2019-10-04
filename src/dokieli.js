@@ -527,7 +527,7 @@ var DO = {
       // var color = d3.scaleOrdinal(d3.schemeCategory10);
 
       //Move this to config perhaps with terms eg. anchor, anchorInternal, warning
-      var color = function(group) { 
+      var color = function(group) {
         switch(group) {
           case 0: return '#fff';
           default:
@@ -1006,7 +1006,7 @@ var DO = {
 
       if (style) {
         var title = style.lastIndexOf('/');
-        title = (title > -1) ? style.substr(title + 1) : style; 
+        title = (title > -1) ? style.substr(title + 1) : style;
 
         if (style.startsWith('http')) {
           var pIRI = uri.getProxyableIRI(style);
@@ -1596,7 +1596,7 @@ var DO = {
             var o = t.object.nominalValue;
 
             if(citations.indexOf(p) > -1) {
-              citationsTo.push(t); 
+              citationsTo.push(t);
             }
           });
 // console.log(citationsTo)
@@ -2146,7 +2146,7 @@ var DO = {
                 }
               });
             }
-            
+
             if (!robustLinkFound) {
               DO.U.createRobustLink(i.value, node, options).then(
                 function(rl){
@@ -3427,7 +3427,7 @@ console.log(url)
                     var spawnOptions = {};
                     spawnOptions['defaultStylesheet'] = ('defaultStylesheet' in o) ? o.defaultStylesheet : false;
 
-                    DO.U.spawnDokieli(o.data, o.options['contentType'], o.options['subjectURI'], spawnOptions);                        
+                    DO.U.spawnDokieli(o.data, o.options['contentType'], o.options['subjectURI'], spawnOptions);
                   })
               })
           })
@@ -3686,7 +3686,12 @@ console.log('//TODO: Handle server returning wrong Response/Content-Type for the
           nodes = DO.U.rewriteBaseURL(nodes, {'baseURLType': baseURLType})
         }
 
-        html.querySelector('body').innerHTML = '<main><article about="" typeof="schema:Article"><h1 property="schema:name">' + title + '</h1></article></main>'
+        var preserveScripts = html.querySelectorAll('body .do-replicate')
+        var preserveScriptsText = ''
+        preserveScripts.forEach((s) => {
+          preserveScriptsText += '\n' + s.outerHTML
+        });
+        html.querySelector('body').innerHTML = '<main><article about="" typeof="schema:Article"><h1 property="schema:name">' + title + '</h1></article></main>' + preserveScriptsText
         html.querySelector('head title').innerHTML = title
         html = doc.getDocument(html)
 
@@ -4979,7 +4984,7 @@ WHERE {\n\
 
       var cEURL = uri.stripFragmentFromString(citation.citingEntity);
 // console.log(DO.C.Activity[cEURL]);
-   
+
       if (DO.C.Activity[cEURL]) {
         if (DO.C.Activity[cEURL]['Graph']) {
           DO.U.addCitation(citation, DO.C.Activity[cEURL]['Graph']);
@@ -5562,7 +5567,7 @@ WHERE {\n\
         MathJax.Hub.setRenderer(jax);
       });
     },
-
+    MarkdownEditor: require('./markdowneditor'),
     Editor: {
       disableEditor: function(e) {
     //    _mediumEditors[1].destroy();
@@ -5570,13 +5575,15 @@ WHERE {\n\
         DO.C.User.Role = 'social';
         DO.U.updateDocumentTitle();
         // document.removeEventListener('click', DO.U.updateDocumentTitle);
-        return DO.U.Editor.MediumEditor.destroy();
+        DO.U.Editor.MediumEditor.destroy();
       },
 
       enableEditor: function(editorMode, e, selector) {
         if (typeof DO.U.Editor.MediumEditor !== 'undefined') {
           DO.U.Editor.disableEditor();
         }
+
+        DO.U.showFragment();
 
         if (e || (typeof e === 'undefined' && editorMode == 'author')) {
           doc.showActionMessage(document.documentElement, 'Activated <strong>' + editorMode + '</strong> mode.');
@@ -5647,7 +5654,7 @@ WHERE {\n\
           }
         };
 
-        if('MathJax' in window) {
+        if(DO.C.MathAvailable) {
           editorOptions.author.extensions['math'] = new DO.U.Editor.Button({action:'math', label:'math'});
           editorOptions.author.toolbar.buttons.splice(7, 0, 'math');
         }
@@ -5655,6 +5662,12 @@ WHERE {\n\
         if('MediumEditorTable' in window) {
           editorOptions.author.extensions['table'] = new MediumEditorTable();
           editorOptions.author.toolbar.buttons.splice(10, 0, 'table');
+        }
+
+        if(DO.U.MarkdownEditor) {
+          editorOptions.author.extensions['markdown'] = new DO.U.Editor.Button({action:'markdown', label:'markdown'});
+          editorOptions.author.toolbar.buttons.splice(10, 0, 'markdown');
+          DO.U.MarkdownEditor.buildMarkdownEditors(editorMode);
         }
 
         var eNodes = selector || doc.selectArticleNode(document);
@@ -6071,6 +6084,12 @@ WHERE {\n\
                     MediumEditor.selection.selectNode(document.getElementById(selectionId), document);
                     break;
 
+                  case 'markdown':
+                  {
+                    DO.U.MarkdownEditor.toMarkdown(this.base)
+                  }
+                  break;
+
                   //XXX: This is used for non-built-in buttons
                   default:
                     var selectionUpdated = '<' + tagNames[0] + datetime + '>' + this.base.selection + '</' + tagNames[0] + '>';
@@ -6126,7 +6145,6 @@ WHERE {\n\
                         selectionUpdated = '<figure>' + selectionUpdated + '<figcaption>' + alt + '</figcaption></figure>';
                       }
                     }
-
                     MediumEditor.util.insertHTMLCommand(this.base.selectedDocument, selectionUpdated);
                     this.base.restoreSelection();
                     this.base.checkSelection();
@@ -6849,7 +6867,7 @@ WHERE {\n\
               this.base.selection = MediumEditor.selection.getSelectionHtml(this.base.selectedDocument); //.replace(DO.C.Editor.regexEmptyHTMLTags, '');
 // console.log('this.base.selection:');
 // console.log(this.base.selection);
- 
+
               var exact = this.base.selection;
               var selectionState = MediumEditor.selection.exportSelection(selectedParentElement, this.document);
               var start = selectionState.start;
