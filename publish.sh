@@ -3,10 +3,10 @@ rm -rf dist
 mkdir dist/
 cd dist
 
-cp ../indexoverview.html ./index.html
 cp ../index.html ./dokieli.html
-cp ../indexmarkdown.html ./dokieli_markdown.html
-cp ../indexsmartdown.html ./dokieli_smartdown.html
+cp ../markdown/index.html ./index.html
+cp ../markdown/dokieli_markdown.html ./dokieli_markdown.html
+cp ../markdown/dokieli_smartdown.html ./dokieli_smartdown.html
 cp ../scripts/dokieli.js ./
 cp ../scripts/dokieli.js.map ./
 cp ../scripts/smartdownStarter.js ./
